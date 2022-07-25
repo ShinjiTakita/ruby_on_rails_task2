@@ -1,0 +1,39 @@
+<div class="container px-5 px-sm-0">
+    <div class="row">
+  <%= render 'books/list', user: @user, book: @newbook %>
+
+  <!-- ユーザーの投稿一覧 -->
+  <div class="col-md-8 offset-md-1">
+  <h2>Books</h2>
+  <% @books.each do |book| %>
+  <!--ユーザーの詳細画面にログインしているユーザーの投稿の一覧を表示させる-->
+      <table class="table tabel-hover table-inverse">
+       <thead>
+         <tr>
+           <th></th>
+           <th>Title</th>
+           <th>Opinion</th>
+           <th colspan="3"></th>
+         </tr>
+        </thead class="tbody">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+              <%= image_tag book.user.get_profile_image(100,100) %>
+      　       <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(book.id) do %>
+              <%= book.title %>
+              <% end %>
+            </td>
+            <td>
+              <%= book.body %>
+            </td>
+          </tr>
+        </tbody>
+    </div>
+  </div>
+</div>
+<% end %>
